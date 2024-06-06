@@ -1,0 +1,4 @@
+*.exe
+*.o
+*.txt
+settings.json
