@@ -1,4 +1,3 @@
-// cmodule.c
 #include <stdio.h>
 
 // Function to add two vectors

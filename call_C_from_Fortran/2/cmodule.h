@@ -1,5 +1,3 @@
-// cmodule.h
-
 #ifndef CMODULE_H
 #define CMODULE_H
 

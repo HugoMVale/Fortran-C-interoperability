@@ -1,5 +1,3 @@
-// cmodule.c
-
 // Function to add two integers
 int add_ints(int a, int b)
 {

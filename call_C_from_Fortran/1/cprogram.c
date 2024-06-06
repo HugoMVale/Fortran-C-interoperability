@@ -1,5 +1,3 @@
-// cprogram.c
-
 #include <stdio.h>
 #include "cmodule.h"
 
