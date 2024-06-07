@@ -3,17 +3,21 @@
 
 int main()
 {
-    // Test the add function for integers
-    int x = 5;
-    int y = 10;
-    int int_result = add_ints(x, y);
-    printf("The sum of %d and %d is %d\n", x, y, int_result);
+    double base;
+    int exponent;
+    double result;
 
-    // Test the add function for doubles
-    double a = 5.5;
-    double b = 10.5;
-    double double_result = add_doubles(a, b);
-    printf("The sum of %.1f and %.1f is %.1f\n", a, b, double_result);
+    // Test power_by_value
+    base = 2.0;
+    exponent = 3;
+    result = power_by_value(base, exponent);
+    printf("power_by_value: %.2f^%d = %.2f\n", base, exponent, result);
+
+    // Test power_by_reference
+    base = 3.0;
+    exponent = 4;
+    power_by_reference(&base, &exponent, &result);
+    printf("power_by_reference: %.2f^%d = %.2f\n", base, exponent, result);
 
     return 0;
 }

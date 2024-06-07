@@ -1,40 +1,40 @@
 program fprogram
     use iso_c_binding, only: c_int, c_double
+    use, intrinsic :: iso_fortran_env, only : dp=>real64
     implicit none
 
+    ! Import the C functions
     interface
-        function add_ints(a, b) bind(C, name="add_ints") result(res)
-            import :: c_int
-            implicit none
-            integer(c_int), value :: a, b
-            integer(c_int) :: res
-        end function add_ints
-
-        function add_doubles(a, b) bind(C, name="add_doubles") result(res)
-            import :: c_double
-            implicit none
-            real(c_double), value :: a, b
+        function power_by_value(base, exponent) bind(C, name="power_by_value") result(res)
+            use iso_c_binding
+            real(c_double), value :: base
+            integer(c_int), value :: exponent
             real(c_double) :: res
-        end function add_doubles
+        end function power_by_value
+
+        subroutine power_by_reference(base, exponent, result) bind(C, name="power_by_reference")
+            use iso_c_binding
+            real(c_double) :: base
+            integer(c_int) :: exponent
+            real(c_double) :: result
+        end subroutine power_by_reference
     end interface
 
-    ! Variables for the integer addition
-    integer(c_int) :: x, y, int_result
-    ! Variables for the double addition
-    real(c_double) :: a, b, double_result
+    ! Variables
+    real(dp) :: base, result
+    integer :: exponent
 
-    ! Assign values to the variables
-    x = 5
-    y = 10
-    a = 5.5
-    b = 10.5
+    ! Test power_by_value
+    base = 2.0
+    exponent = 3
+    result = power_by_value(base, exponent)
+    print *, "power_by_value: ", base, "**", exponent, " = ", result
 
-    ! Call the C functions
-    int_result = add_ints(x, y)
-    double_result = add_doubles(a, b)
-
-    ! Print the results
-    print *, "The sum of ", x, " and ", y, " is ", int_result
-    print *, "The sum of ", a, " and ", b, " is ", double_result
-
+    ! Test power_by_reference
+    base = 3.0
+    exponent = 4
+    call power_by_reference(base, exponent, result)
+    print *, "power_by_reference: ", base, "**", exponent, " = ", result
+    
 end program fprogram
+    
