@@ -4,23 +4,22 @@ program fprogram
 
     ! Function prototypes for C functions
     interface
-        subroutine add_vectors(length, vec1, vec2, result) bind(c, name="add_vectors")
+        subroutine add_vectors(length, vec1, vec2, result) bind(c)
             import :: c_int
             implicit none
             integer(c_int), value :: length
             integer(c_int), intent(in) :: vec1(length), vec2(length)
             integer(c_int), intent(out) :: result(length)
-            
-        end subroutine add_vectors
+        end subroutine
 
-        subroutine add_matrices(rows, cols, mat1, mat2, result) bind(c, name="add_matrices")
+        subroutine add_matrices(rows, cols, mat1, mat2, result) bind(c)
             import :: c_int
             implicit none
             integer(c_int), value :: rows
             integer(c_int), value :: cols
             integer(c_int), intent(in) :: mat1(rows, cols), mat2(rows, cols)
             integer(c_int), intent(out) :: result(rows, cols)
-        end subroutine add_matrices
+        end subroutine
     end interface
 
     ! Declare arrays and variables

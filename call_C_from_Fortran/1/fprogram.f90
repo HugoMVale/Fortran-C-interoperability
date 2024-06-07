@@ -5,19 +5,19 @@ program fprogram
 
     ! Import the C functions
     interface
-        function power_by_value(base, exponent) bind(C, name="power_by_value") result(res)
+        function power_by_value(base, exponent) bind(C) result(res)
             use iso_c_binding
             real(c_double), value :: base
             integer(c_int), value :: exponent
             real(c_double) :: res
-        end function power_by_value
+        end function
 
-        subroutine power_by_reference(base, exponent, result) bind(C, name="power_by_reference")
+        subroutine power_by_reference(base, exponent, result) bind(C)
             use iso_c_binding
             real(c_double) :: base
             integer(c_int) :: exponent
             real(c_double) :: result
-        end subroutine power_by_reference
+        end subroutine
     end interface
 
     ! Variables

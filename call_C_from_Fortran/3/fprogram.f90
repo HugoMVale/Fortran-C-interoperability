@@ -13,15 +13,15 @@ program fprogram
         logical(c_bool) :: bool_component
         character(c_char) :: char_component
         character(kind=c_char) :: string_component(STRING_SIZE)
-    end type thing
+    end type
 
     ! Import the C functions
     interface
-        function process_thing(t) bind(C, name="process_thing") result(new_t)
+        function process_thing(t) bind(C) result(new_t)
             import :: thing
             type(thing), intent(in) :: t
             type(thing) :: new_t
-        end function process_thing
+        end function
     end interface
 
     ! Variables
