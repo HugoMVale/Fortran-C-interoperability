@@ -3,7 +3,6 @@ program fprogram
     implicit none
     
     integer, parameter :: ARRAY_SIZE = 10, STRING_SIZE = 20
-    character(kind=c_char, len=20) ::string_component
 
     ! Define the struct in Fortran to match the C struct
     type, bind(C) :: thing
