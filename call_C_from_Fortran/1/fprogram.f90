@@ -1,40 +1,50 @@
 program fprogram
-    use iso_c_binding, only: c_int, c_double
-    use, intrinsic :: iso_fortran_env, only : dp=>real64
+    use, intrinsic :: iso_fortran_env, only : real64
+    use iso_c_binding, only: c_int, c_float, c_double, c_char, c_bool, c_double_complex
+    
     implicit none
 
-    ! Import the C functions
     interface
-        function power_by_value(base, exponent) bind(C) result(res)
-            use iso_c_binding
-            real(c_double), value :: base
-            integer(c_int), value :: exponent
-            real(c_double) :: res
-        end function
-
-        subroutine power_by_reference(base, exponent, result) bind(C)
-            use iso_c_binding
-            real(c_double) :: base
-            integer(c_int) :: exponent
-            real(c_double) :: result
+        subroutine example_function(i, ip, f, fp, d, dp, cd, cdp, c, cp, b) bind(C)
+            import :: c_int, c_float, c_double, c_char, c_bool, c_double_complex
+            implicit none
+            integer(c_int), value :: i
+            integer(c_int) :: ip
+            real(c_float), value :: f
+            real(c_float) :: fp
+            real(c_double), value :: d
+            real(c_double) :: dp
+            complex(c_double_complex), value :: cd
+            complex(c_double_complex) :: cdp
+            character(c_char), value :: c
+            character(c_char) :: cp
+            logical(c_bool), value :: b
         end subroutine
     end interface
 
-    ! Variables
-    real(dp) :: base, result
-    integer :: exponent
+    integer :: i, ip
+    real :: f, fp
+    real(real64) :: d, dp
+    complex(real64) :: cd, cdp
+    character :: c, cp
+    logical(c_bool) :: b
 
-    ! Test power_by_value
-    base = 2.0
-    exponent = 3
-    result = power_by_value(base, exponent)
-    print *, "power_by_value: ", base, "**", exponent, " = ", result
+    ! Initialize the variables
+    i = 10
+    ip = 20
+    f = 3.14
+    fp = 6.28
+    d = 2.718d0
+    dp = 1.618d0
+    cd = (1.0d0, 2.0d0)
+    cdp = (3.0d0, 4.0d0)
+    c = 'A'
+    cp = 'Z'
+    b = .true.
 
-    ! Test power_by_reference
-    base = 3.0
-    exponent = 4
-    call power_by_reference(base, exponent, result)
-    print *, "power_by_reference: ", base, "**", exponent, " = ", result
+    ! Call the C function
+    call example_function(i, ip, f, fp, d, dp, cd, cdp, c, cp, b)
     
 end program fprogram
+
     

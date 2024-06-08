@@ -1,22 +1,22 @@
 #include "cmodule.h"
+#include <stdio.h>
 
-// Function to compute power with parameters passed by value
-double power_by_value(double base, int exponent)
+void example_function(int i, int *ip, float f, float *fp, double d, double *dp, _Complex double cd, _Complex double *cdp, char c, char *cp, _Bool b)
 {
-    double result = 1.0;
-    for (int i = 0; i < exponent; ++i)
-    {
-        result *= base;
-    }
-    return result;
-}
+    printf("Integer value: %d\n", i);
+    printf("Integer pointer value: %d\n", *ip);
 
-// Function to compute power with parameters passed by reference
-void power_by_reference(double *base, int *exponent, double *result)
-{
-    *result = 1.0;
-    for (int i = 0; i < *exponent; ++i)
-    {
-        *result *= *base;
-    }
+    printf("Float value: %f\n", f);
+    printf("Float pointer value: %f\n", *fp);
+
+    printf("Double value: %lf\n", d);
+    printf("Double pointer value: %lf\n", *dp);
+
+    printf("Complex double value: %lf + %lfi\n", creal(cd), cimag(cd));
+    printf("Complex double pointer value: %lf + %lfi\n", creal(*cdp), cimag(*cdp));
+
+    printf("Char value: %c\n", c);
+    printf("Char pointer value: %c\n", *cp);
+
+    printf("Boolean value: %s\n", b ? "true" : "false");
 }

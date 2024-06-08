@@ -3,11 +3,10 @@
 This guide illustrates how to call C functions from Fortran, covering various scenarios including functions with scalar numeric variables called by value or by reference, explicit-size array arguments, and struct arguments with struct result.
 
 ## Case 1 
-Functions with _scalar numeric variables called by value or by reference_.
+Functions with _scalar_ variables called by _value_ or by _reference_.
 ```c
-double power_by_value(double base, int exponent);
-
-void power_by_reference(double *base, int *exponent, double *result);
+void example_function(int i, int *ip, float f, float *fp, double d, double *dp,
+                      _Complex double cd, _Complex double *cdp, char c, char *cp, _Bool b);
 ```
 
 ## Case 2
