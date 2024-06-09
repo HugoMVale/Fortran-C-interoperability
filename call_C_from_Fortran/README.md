@@ -5,8 +5,8 @@ This guide illustrates how to call C functions from Fortran, covering various sc
 ## Case 1 
 Functions with _scalar_ variables called by _value_ or by _reference_.
 ```c
-void example_function(int i, int *ip, float f, float *fp, double d, double *dp,
-                      _Complex double cd, _Complex double *cdp, char c, char *cp, _Bool b);
+void print_args(int i, int *ip, float f, float *fp, double d, double *dp,
+                _Complex double cd, _Complex double *cdp, char c, char *cp, _Bool b);
 ```
 
 ## Case 2

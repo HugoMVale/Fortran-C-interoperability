@@ -5,19 +5,19 @@ program fprogram
     implicit none
 
     interface
-        subroutine example_function(i, ip, f, fp, d, dp, cd, cdp, c, cp, b) bind(C)
+        subroutine print_args(i, ip, f, fp, d, dp, cd, cdp, c, cp, b) bind(C)
             import :: c_int, c_float, c_double, c_char, c_bool, c_double_complex
             implicit none
             integer(c_int), value :: i
-            integer(c_int) :: ip
+            integer(c_int), intent(inout) :: ip
             real(c_float), value :: f
-            real(c_float) :: fp
+            real(c_float), intent(inout) :: fp
             real(c_double), value :: d
-            real(c_double) :: dp
+            real(c_double),intent(inout) :: dp
             complex(c_double_complex), value :: cd
-            complex(c_double_complex) :: cdp
+            complex(c_double_complex), intent(inout) :: cdp
             character(c_char), value :: c
-            character(c_char) :: cp
+            character(c_char), intent(inout) :: cp
             logical(c_bool), value :: b
         end subroutine
     end interface
@@ -43,7 +43,7 @@ program fprogram
     b = .true.
 
     ! Call the C function
-    call example_function(i, ip, f, fp, d, dp, cd, cdp, c, cp, b)
+    call print_args(i, ip, f, fp, d, dp, cd, cdp, c, cp, b)
     
 end program fprogram
 

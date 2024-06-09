@@ -1,7 +1,7 @@
 #include "cmodule.h"
 #include <stdio.h>
 
-void example_function(int i, int *ip, float f, float *fp, double d, double *dp, _Complex double cd, _Complex double *cdp, char c, char *cp, _Bool b)
+void print_args(int i, int *ip, float f, float *fp, double d, double *dp, _Complex double cd, _Complex double *cdp, char c, char *cp, _Bool b)
 {
     printf("Integer value: %d\n", i);
     printf("Integer pointer value: %d\n", *ip);

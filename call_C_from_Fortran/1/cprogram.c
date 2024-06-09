@@ -20,7 +20,7 @@ int main()
 
     _Bool b = 1; // true
 
-    example_function(i, &ip, f, &fp, d, &dp, cd, &cdp, c, &cp, b);
+    print_args(i, &ip, f, &fp, d, &dp, cd, &cdp, c, &cp, b);
 
     return 0;
 }
