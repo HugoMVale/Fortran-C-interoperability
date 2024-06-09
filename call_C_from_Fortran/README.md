@@ -11,15 +11,21 @@ void print_args(int i, int *ip, float f, float *fp, double d, double *dp,
 
 ## Case 2
 
-Functions with _explicit-size array_ arguments.
+Functions with _unidimensional array_ arguments.
 
 ```c
-void add_vectors(int length, const int *vec1, const int *vec2, int *result);
+void add_vectors(int length, const int vec1[], const int vec2[], int result[]);
+
+int *add_vectors_and_return(int length, const int vec1[], const int vec2[]);
 ```
+
+## Case 3
+
+tbd
 
 ## Case 4
 
-Function with _struct argument and struct result_.
+Function with _struct argument_ and _struct result_.
 
 ```c
 typedef struct
