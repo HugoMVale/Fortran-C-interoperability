@@ -21,6 +21,8 @@ int *add_vectors_and_return(int length, const int vec1[], const int vec2[]);
 
 ## Case 3
 
+Functions with _multidimensional array_ arguments.
+
 tbd
 
 ## Case 4
@@ -40,3 +42,9 @@ typedef struct
 
 thing process_thing(const thing *t);
 ```
+
+## Case 5
+
+Functions with _function_ arguments.
+
+tbd
