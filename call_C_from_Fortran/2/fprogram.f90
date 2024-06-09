@@ -1,56 +1,54 @@
 program fprogram
-    use iso_c_binding, only: c_int
+    use iso_c_binding, only: c_int, c_ptr, c_f_pointer
     implicit none
 
     ! Function prototypes for C functions
     interface
-        subroutine add_vectors(length, vec1, vec2, result) bind(c)
+        subroutine add_vectors(length, vec1, vec2, result) bind(C)
             import :: c_int
             implicit none
             integer(c_int), value :: length
-            integer(c_int), intent(in) :: vec1(length), vec2(length)
-            integer(c_int), intent(out) :: result(length)
+            integer(c_int), dimension(*), intent(in) :: vec1, vec2
+            integer(c_int), intent(out) :: result(*)
         end subroutine
+        function add_vectors_and_return(length, vec1, vec2) bind(C)
+            import :: c_int, c_ptr
+            integer(c_int), value :: length
+            integer(c_int), dimension(*), intent(in) :: vec1, vec2
+            type(c_ptr) :: add_vectors_and_return
+        end function
 
-        subroutine add_matrices(rows, cols, mat1, mat2, result) bind(c)
-            import :: c_int
-            implicit none
-            integer(c_int), value :: rows
-            integer(c_int), value :: cols
-            integer(c_int), intent(in) :: mat1(rows, cols), mat2(rows, cols)
-            integer(c_int), intent(out) :: result(rows, cols)
-        end subroutine
+        subroutine free(ptr) bind(C)
+            import :: c_ptr
+            type(c_ptr), value :: ptr
+        end subroutine free
     end interface
 
     ! Declare arrays and variables
-    integer, parameter :: VEC_LENGTH = 3
-    integer, parameter :: MAT_ROWS = 2
-    integer, parameter :: MAT_COLS = 3
-    integer, dimension(VEC_LENGTH) :: vec1, vec2, vec_result
-    integer, dimension(MAT_ROWS, MAT_COLS) :: mat1, mat2, mat_result
-    integer :: i
+    integer, parameter :: VEC_LENGTH = 5
+    integer, dimension(VEC_LENGTH) :: vec1, vec2, result_subroutine
+    integer, pointer :: result_function(:)
+    type(c_ptr) :: c_result_ptr
+    
+    ! Initialize vectors
+    vec1 = [1, 2, 3, 4, 5]
+    vec2 = [6, 7, 8, 9, 10]
 
-    ! Initialize vectors and matrices
-    vec1 = [1, 2, 3]
-    vec2 = [4, 5, 6]
-    mat1 = reshape([1, 2, 3, 4, 5, 6], shape=[MAT_ROWS, MAT_COLS])
-    mat2 = reshape([9, 8, 7, 6, 5, 4], shape=[MAT_ROWS, MAT_COLS])
-    mat_result = 0
+    ! Call the C _void_ function `add_vectors`
+    call add_vectors(VEC_LENGTH, vec1, vec2, result_subroutine)
 
-    ! Call add_vectors function
-    call add_vectors(VEC_LENGTH, vec1, vec2, vec_result)
-
-    ! Display the result vector
     print *, "Result Vector (add_vectors):"
-    print *, vec_result
+    print *, result_subroutine
 
-    ! Call add_matrices function
-    call add_matrices(MAT_ROWS, MAT_COLS, mat1, mat2, mat_result)
+    ! Call the C function `add_vectors_and_return`
+    c_result_ptr = add_vectors_and_return(VEC_LENGTH, vec1, vec2)
+    
+    call c_f_pointer(cptr=c_result_ptr, fptr=result_function, shape=[VEC_LENGTH])
 
-    ! Display the result matrix
-    print *, "Result Matrix (add_matrices):"
-    do i=1, MAT_ROWS
-        print *, mat1(i, :)
-    end do
+    print *, "Result Vector (add_vectors_and_return):"
+    print *, result_function
+    
+    ! Free the allocated memory (we need to call a C function to do this)
+    call free(c_result_ptr)
 
 end program fprogram

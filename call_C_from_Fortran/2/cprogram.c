@@ -1,50 +1,38 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "cmodule.h"
-
-#define VEC_SIZE 3
-#define MAT_ROWS 2
-#define MAT_COLS 3
 
 int main()
 {
-    // Test add_vectors
-    int vec1[VEC_SIZE] = {1, 2, 3};
-    int vec2[VEC_SIZE] = {4, 5, 6};
-    int vec_result[VEC_SIZE] = {0};
+    const int vec1[] = {1, 2, 3, 4, 5};
+    const int vec2[] = {6, 7, 8, 9, 10};
+    const int length = 5;
+    int result[length];
 
-    // Call the function to add vectors
-    add_vectors(VEC_SIZE, vec1, vec2, vec_result);
-
-    // Display the result vector
-    printf("Result Vector (add_vectors):\n");
-    for (int i = 0; i < VEC_SIZE; ++i)
+    // Call the void function (subroutine)
+    add_vectors(length, vec1, vec2, result);
+    printf("Result using add_vectors:\n");
+    for (int i = 0; i < length; ++i)
     {
-        printf("%d ", vec_result[i]);
+        printf("%d ", result[i]);
     }
-    printf("\n\n");
+    printf("\n");
 
-    // Test add_matrices
-    int mat1[MAT_ROWS][MAT_COLS] = {
-        {1, 2, 3},
-        {4, 5, 6}};
-    int mat2[MAT_ROWS][MAT_COLS] = {
-        {1, 2, 3},
-        {4, 5, 6}};
-    int mat_result[MAT_ROWS][MAT_COLS] = {0};
-
-    // Call the function to add matrices
-    add_matrices(MAT_ROWS, MAT_COLS, mat1, mat2, mat_result);
-
-    // Display the result matrix
-    printf("Result Matrix (add_matrices):\n");
-    for (int i = 0; i < MAT_ROWS; ++i)
+    // Call the function
+    int *result_dynamic = add_vectors_and_return(length, vec1, vec2);
+    if (result_dynamic == NULL)
     {
-        for (int j = 0; j < MAT_COLS; ++j)
-        {
-            printf("%d ", mat_result[i][j]);
-        }
-        printf("\n");
+        // Handle error
+        return 1;
     }
+    printf("Result using add_vectors_and_return:\n");
+    for (int i = 0; i < length; ++i)
+    {
+        printf("%d ", result_dynamic[i]);
+    }
+    printf("\n");
+
+    free(result_dynamic);
 
     return 0;
 }
