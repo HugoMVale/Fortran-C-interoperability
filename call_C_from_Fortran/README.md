@@ -1,6 +1,6 @@
 # Call C from Fortran
 
-This guide illustrates how to call C functions from Fortran, covering various scenarios including functions with scalar numeric variables called by value or by reference, explicit-size array arguments, and struct arguments with struct result.
+These examples illustrate how to call C functions from Fortran, covering various scenarios including functions with scalar numeric variables called by value or by reference, explicit-size array arguments, and struct arguments with struct result.
 
 ## Case 1 
 Functions with _scalar_ variables called by _value_ or by _reference_.
