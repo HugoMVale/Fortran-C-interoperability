@@ -16,10 +16,10 @@ program fprogram
 
     ! Import the C functions
     interface
-        function process_thing(t) bind(C) result(new_t)
+        function process_thing(t) bind(C)
             import :: thing
             type(thing), intent(in) :: t
-            type(thing) :: new_t
+            type(thing) :: process_thing
         end function
     end interface
 
