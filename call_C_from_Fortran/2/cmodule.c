@@ -3,7 +3,7 @@
 #include "cmodule.h"
 
 // Function to calculate the Euclidean distance
-double euclidean_distance(double point1[3], double point2[3])
+double euclidean_distance(const double point1[3], const double point2[3])
 {
     double distance;
     distance = sqrt(pow(point2[0] - point1[0], 2) +

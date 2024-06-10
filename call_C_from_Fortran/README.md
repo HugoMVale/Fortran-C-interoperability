@@ -16,7 +16,7 @@ void print_args(int i, int *ip, float f, float *fp, double d, double *dp,
 Functions with _unidimensional array_ arguments.
 
 ```c
-double euclidean_distance(double point1[3], double point2[3]);
+double euclidean_distance(const double point1[3], const double point2[3]);
 
 void add_vectors(int length, const int vec1[], const int vec2[], int result[]);
 
