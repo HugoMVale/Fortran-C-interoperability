@@ -2,8 +2,10 @@
 
 These examples illustrate how to call C functions from Fortran, covering various scenarios including functions with scalar numeric variables called by value or by reference, explicit-size array arguments, and struct arguments with struct result.
 
-## Case 1 
+## Case 1
+
 Functions with _scalar_ variables called by _value_ or by _reference_.
+
 ```c
 void print_args(int i, int *ip, float f, float *fp, double d, double *dp,
                 _Complex double cd, _Complex double *cdp, char c, char *cp, _Bool b);
@@ -14,6 +16,8 @@ void print_args(int i, int *ip, float f, float *fp, double d, double *dp,
 Functions with _unidimensional array_ arguments.
 
 ```c
+double euclidean_distance(double point1[3], double point2[3]);
+
 void add_vectors(int length, const int vec1[], const int vec2[], int result[]);
 
 int *add_vectors_and_return(int length, const int vec1[], const int vec2[]);
