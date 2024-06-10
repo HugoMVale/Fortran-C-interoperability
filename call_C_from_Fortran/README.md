@@ -23,6 +23,10 @@ void add_vectors(int length, const int vec1[], const int vec2[], int result[]);
 int *add_vectors_and_return(int length, const int vec1[], const int vec2[]);
 ```
 
+References:
+
+* https://fortran-lang.discourse.group/t/iso-c-binding-pass-an-array-from-c-to-fortran-edit-python-interop-content/514/18
+
 ## Case 3
 
 Functions with _multidimensional array_ arguments.
@@ -30,6 +34,18 @@ Functions with _multidimensional array_ arguments.
 tbd
 
 ## Case 4
+
+Functions with _C-string_ arguments.
+
+```c
+void to_uppercase(char *str);
+```
+
+References:
+
+* https://fortran-lang.discourse.group/t/iso-c-binding-pass-an-array-from-c-to-fortran-edit-python-interop-content/514/18
+
+## Case 5
 
 Function with _struct argument_ and _struct result_.
 
