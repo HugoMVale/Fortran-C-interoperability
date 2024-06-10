@@ -2,18 +2,14 @@
 
 These examples illustrate how to call C functions from Fortran, covering various scenarios including functions with scalar numeric variables called by value or by reference, explicit-size array arguments, and struct arguments with struct result.
 
-## Case 1
-
-Functions with _scalar_ variables called by _value_ or by _reference_.
+## 1. Functions with _scalar_ variables called by _value_ or by _reference_
 
 ```c
 void print_args(int i, int *ip, float f, float *fp, double d, double *dp,
                 _Complex double cd, _Complex double *cdp, char c, char *cp, _Bool b);
 ```
 
-## Case 2
-
-Functions with _unidimensional array_ arguments.
+## 2. Functions with _unidimensional array_ arguments
 
 ```c
 double euclidean_distance(const double point1[3], const double point2[3]);
@@ -27,15 +23,11 @@ References:
 
 * https://fortran-lang.discourse.group/t/iso-c-binding-pass-an-array-from-c-to-fortran-edit-python-interop-content/514/18
 
-## Case 3
-
-Functions with _multidimensional array_ arguments.
+## 3. Functions with _multidimensional array_ arguments
 
 tbd
 
-## Case 4
-
-Functions with _C-string_ arguments.
+## 4. Functions with _C-string_ arguments
 
 ```c
 void to_uppercase(char *str);
@@ -45,9 +37,7 @@ References:
 
 * https://fortran-lang.discourse.group/t/iso-c-binding-pass-an-array-from-c-to-fortran-edit-python-interop-content/514/18
 
-## Case 5
-
-Function with _struct argument_ and _struct result_.
+## 5. Function with _struct argument_ and _struct result_
 
 ```c
 typedef struct
@@ -63,8 +53,6 @@ typedef struct
 thing process_thing(const thing *t);
 ```
 
-## Case 5
-
-Functions with _function_ arguments.
+## 6. Functions with _function_ arguments
 
 tbd
