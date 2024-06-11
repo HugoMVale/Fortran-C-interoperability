@@ -10,7 +10,7 @@ program fprogram
             implicit none
             real(c_double) :: euclidean_distance
             real(c_double), dimension(3), intent(in) :: point1, point2
-        end function euclidean_distance
+        end function
 
         subroutine add_vectors(length, vec1, vec2, result) bind(C)
             import :: c_int
@@ -31,7 +31,7 @@ program fprogram
         subroutine free(ptr) bind(C)
             import :: c_ptr
             type(c_ptr), value :: ptr
-        end subroutine free
+        end subroutine
     end interface
 
     ! Declare arrays and variables
