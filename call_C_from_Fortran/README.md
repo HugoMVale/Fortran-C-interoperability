@@ -25,7 +25,9 @@ References:
 
 ## 3. Functions with _multidimensional array_ arguments
 
-tbd
+```c
+void sum_cols(int rows, int cols, int matrix[rows][cols], int *result);
+```
 
 ## 4. Functions with _C-string_ arguments
 
