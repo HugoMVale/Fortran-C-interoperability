@@ -5,10 +5,9 @@ program fprogram
 
     ! Function prototypes for C functions
     interface
-        function euclidean_distance(point1, point2) bind(C)
+        real(c_double) function euclidean_distance(point1, point2) bind(C)
             import :: c_double
             implicit none
-            real(c_double) :: euclidean_distance
             real(c_double), dimension(3), intent(in) :: point1, point2
         end function
 
@@ -20,10 +19,9 @@ program fprogram
             integer(c_int), intent(out) :: result(*)
         end subroutine
         
-        function add_vectors_and_return(length, vec1, vec2) bind(C)
+        type(c_ptr) function add_vectors_and_return(length, vec1, vec2) bind(C)
             import :: c_int, c_ptr
             implicit none
-            type(c_ptr) :: add_vectors_and_return
             integer(c_int), value :: length
             integer(c_int), dimension(*), intent(in) :: vec1, vec2
         end function
