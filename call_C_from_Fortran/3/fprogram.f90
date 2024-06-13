@@ -2,7 +2,6 @@ program fprogram
     use iso_c_binding, only: c_int
     implicit none
 
-    ! Function prototypes for C functions
     interface
         subroutine sum_cols(rows, cols, matrix, result) bind(C)
             import c_int

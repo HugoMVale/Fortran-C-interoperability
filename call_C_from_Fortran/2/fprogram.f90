@@ -3,7 +3,6 @@ program fprogram
     use iso_c_binding, only: c_double, c_int, c_ptr, c_f_pointer
     implicit none
 
-    ! Function prototypes for C functions
     interface
         real(c_double) function euclidean_distance(point1, point2) bind(C)
             import :: c_double

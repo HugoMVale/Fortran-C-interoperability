@@ -1,7 +1,6 @@
 program fprogram
     use, intrinsic :: iso_fortran_env, only : real64
     use iso_c_binding, only: c_int, c_float, c_double, c_char, c_bool, c_double_complex
-    
     implicit none
 
     interface
