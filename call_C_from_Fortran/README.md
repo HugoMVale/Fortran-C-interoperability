@@ -21,7 +21,7 @@ int *add_vectors_and_return(int length, const int vec1[], const int vec2[]);
 
 References:
 
-* https://fortran-lang.discourse.group/t/iso-c-binding-pass-an-array-from-c-to-fortran-edit-python-interop-content/514/18
+* https://fortran-lang.discourse.group/t/iso-c-binding-pass-an-array-from-c-to-fortran-edit-python-interop-content/514/9?u=hugomvale
 
 ## 3. Functions with _multidimensional array_ arguments
 
@@ -37,7 +37,7 @@ void to_uppercase(char *str);
 
 References:
 
-* https://fortran-lang.discourse.group/t/iso-c-binding-pass-an-array-from-c-to-fortran-edit-python-interop-content/514/18
+* https://fortran-lang.discourse.group/t/iso-c-binding-pass-an-array-from-c-to-fortran-edit-python-interop-content/514/9?u=hugomvale
 
 ## 5. Function with _struct argument_ and _struct result_
 
@@ -57,4 +57,12 @@ thing process_thing(const thing *t);
 
 ## 6. Functions with _function_ arguments
 
-tbd
+```c
+typedef double (*func_ptr)(double);
+
+void apply_function_to_vector(func_ptr f, double *input_vector, double *output_vector, int length);
+```
+
+References:
+
+* https://fortran-lang.discourse.group/t/iso-c-binding-pass-an-array-from-c-to-fortran-edit-python-interop-content/514/22?u=hugomvale
