@@ -1,15 +1,10 @@
 program fprogram
+    use, intrinsic :: iso_fortran_env, only : real64
     use, intrinsic :: iso_c_binding, only: c_double, c_int, c_ptr, c_funptr, c_funloc
     implicit none
 
     interface
-        type(c_ptr) function sample_function(x) bind(C)
-            import :: c_double, c_ptr
-            implicit none
-            real(c_double), value :: x
-        end function
-
-        subroutine call_function_with_vector(f, input_vector, output_vector, length) bind(C)
+        subroutine apply_function_to_vector(f, input_vector, output_vector, length) bind(C)
             import :: c_double, c_int, c_funptr
             implicit none
             type(c_funptr), value :: f
@@ -19,15 +14,21 @@ program fprogram
         end subroutine
     end interface
 
-    real(c_double), dimension(3) :: input_vector = [1.0, 2.0, 3.0]
-    real(c_double), dimension(3) :: output_vector
-    integer(c_int) :: length
+    integer, parameter :: length = 3        
+    real(real64), dimension(3) :: input_vector, output_vector
 
-    length = size(input_vector)
+    input_vector = [1.0, 2.0, 3.0]
 
-    call call_function_with_vector(c_funloc(sample_function), input_vector, output_vector, length)
+    call apply_function_to_vector(c_funloc(square), input_vector, output_vector, length)
 
     print *, "Output Vector:"
     print *, output_vector
+
+    contains
+
+    real(real64) function square(x)
+        real(real64), intent(in) :: x
+        square = x**2
+    end function    
 
 end program fprogram
