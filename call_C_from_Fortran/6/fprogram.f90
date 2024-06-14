@@ -15,9 +15,9 @@ program fprogram
     end interface
 
     integer, parameter :: length = 3        
-    real(real64), dimension(3) :: input_vector, output_vector
+    real(real64), dimension(length) :: input_vector, output_vector
 
-    input_vector = [1.0, 2.0, 3.0]
+    input_vector = [1d0, 2d0, 3d0]
 
     call apply_function_to_vector(c_funloc(square), input_vector, output_vector, length)
 
@@ -26,8 +26,8 @@ program fprogram
 
     contains
 
-    real(real64) function square(x)
-        real(real64), intent(in) :: x
+    real(real64) function square(x) bind(C)
+        real(real64), intent(in), value :: x
         square = x**2
     end function    
 
