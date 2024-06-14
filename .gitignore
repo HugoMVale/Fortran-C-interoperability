@@ -1,3 +1,4 @@
 *.txt
 settings.json
 build
+*.mod
