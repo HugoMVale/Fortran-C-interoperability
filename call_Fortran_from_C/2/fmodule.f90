@@ -1,5 +1,4 @@
 module fmodule
-   use, intrinsic :: iso_c_binding, only: c_int
    implicit none
    private
 
@@ -25,6 +24,7 @@ contains
 
    subroutine matvec_product_c(rows, cols, matrix, vector, result) bind(C)
       ! C-wrapper with explicit-shape arrays
+      use, intrinsic :: iso_c_binding, only: c_int
       integer(c_int), intent(in), value :: rows, cols
       integer(c_int), intent(in) :: matrix(rows, cols)
       integer(c_int), intent(in) :: vector(rows)

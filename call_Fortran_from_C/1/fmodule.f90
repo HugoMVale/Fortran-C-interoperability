@@ -1,5 +1,4 @@
 module fmodule
-   use, intrinsic :: iso_c_binding, only: c_int, c_float, c_double, c_double_complex, c_char, c_bool
    implicit none
    private
 
@@ -29,6 +28,7 @@ contains
    integer(c_int) function print_args_c(i, f, d, cd, c, b) bind(C)
       ! C-wrapper for print_args
       ! Some arguments are passed by value, others by reference (just to show how it works)
+      use, intrinsic :: iso_c_binding, only: c_int, c_float, c_double, c_double_complex, c_char, c_bool
       integer(c_int), intent(in) :: i
       real(c_float), intent(in), value :: f
       real(c_double), intent(in), value :: d
