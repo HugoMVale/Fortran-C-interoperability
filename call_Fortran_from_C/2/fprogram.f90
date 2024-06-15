@@ -1,5 +1,5 @@
 program fprogram
-   use fmodule
+   use fmodule, only: matvec_product
    implicit none
 
    integer, parameter :: rows = 2, cols = 3

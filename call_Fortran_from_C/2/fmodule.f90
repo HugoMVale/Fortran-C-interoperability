@@ -3,7 +3,7 @@ module fmodule
    implicit none
    private
 
-   public :: matvec_product, matvec_product_c
+   public :: matvec_product
 
 contains
 

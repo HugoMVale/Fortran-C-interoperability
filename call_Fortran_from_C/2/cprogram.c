@@ -7,9 +7,8 @@ extern void matvec_product_c(int rows, int cols, const int *matrix, const int *v
 
 int main()
 {
-    // const int rows = 2, cols = 3;
     int matrix[cols][rows] = {{1, 2}, {3, 4}, {5, 6}};
-    int vector[] = {1, 2, 3};
+    int vector[cols] = {1, 2, 3};
     int product[rows];
 
     // Print the matrix
