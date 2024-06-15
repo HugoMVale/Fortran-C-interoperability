@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 // Prototype of the Fortran function
-extern int print_args_c(int i, float f, double d, _Complex double cd, char c, _Bool b);
+extern int print_args_c(int *i, float f, double d, _Complex double *cd, char c, _Bool b);
 
 int main()
 {
@@ -15,7 +15,7 @@ int main()
     _Bool b = 1; // true in C
 
     // Call the Fortran function
-    int ret = print_args_c(i, f, d, cd, c, b);
+    int ret = print_args_c(&i, f, d, &cd, c, b);
     printf("Return value: %d\n", ret);
 
     return 0;

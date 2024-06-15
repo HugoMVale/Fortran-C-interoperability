@@ -15,7 +15,7 @@ integer function print_args(i, f, d, cd, c, b)
 end function
 ```
 
-## 2. Functions with _unidimensional array_ arguments
+## 2. Functions with _uni- and mutidimensional array_ arguments
 
 ```c
 double euclidean_distance(const double point1[3], const double point2[3]);

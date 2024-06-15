@@ -29,14 +29,15 @@ contains
 
    integer(c_int) function print_args_c(i, f, d, cd, c, b) bind(C)
       ! C-wrapper for print_args
-      integer(c_int), intent(in), value :: i
+      ! Some arguments are passed by value, others by reference (just to show how it works)
+      integer(c_int), intent(in) :: i
       real(c_float), intent(in), value :: f
       real(c_double), intent(in), value :: d
-      complex(c_double_complex), intent(in), value :: cd
+      complex(c_double_complex), intent(in) :: cd
       character(c_char), intent(in), value :: c
       logical(c_bool), intent(in), value :: b
 
-      ! change of logical kind required to match Fortran type
+      ! Change of logical kind required to match Fortran type
       print_args_c = print_args(i, f, d, cd, c, logical(b, kind=4))
 
    end function
