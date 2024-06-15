@@ -36,7 +36,7 @@ References:
 ## 3. Functions with _multidimensional array_ arguments
 
 ```c
-void sum_cols(int rows, int cols, int matrix[rows][cols], int *result);
+void sum_cols(int rows, int cols, const int matrix[rows][cols], int *result);
 ```
 
 ## 4. Functions with _C-string_ arguments
@@ -70,7 +70,7 @@ thing process_thing(const thing *t);
 ```c
 typedef double (*func_ptr)(double);
 
-void apply_function_to_vector(func_ptr f, double *input_vector, double *output_vector, int length);
+void apply_function_to_vector(func_ptr f, const double *input_vector, double *output_vector, int length);
 ```
 
 References:
