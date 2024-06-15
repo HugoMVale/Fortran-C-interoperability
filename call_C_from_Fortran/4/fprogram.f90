@@ -5,7 +5,7 @@ program fprogram
    interface
       subroutine to_uppercase(str) bind(C)
          import :: c_char
-         character(c_char), dimension(*), intent(inout) :: str
+         character(c_char), intent(inout) :: str(*)
       end subroutine
    end interface
 

@@ -6,17 +6,17 @@ program fprogram
    interface
       subroutine print_args(i, ip, f, fp, d, dp, cd, cdp, c, cp, b) bind(C)
          import :: c_int, c_float, c_double, c_char, c_bool, c_double_complex
-         integer(c_int), value :: i
+         integer(c_int), intent(in), value :: i
          integer(c_int), intent(inout) :: ip
-         real(c_float), value :: f
+         real(c_float), intent(in), value :: f
          real(c_float), intent(inout) :: fp
-         real(c_double), value :: d
+         real(c_double), intent(in), value :: d
          real(c_double), intent(inout) :: dp
-         complex(c_double_complex), value :: cd
+         complex(c_double_complex), intent(in), value :: cd
          complex(c_double_complex), intent(inout) :: cdp
-         character(c_char), value :: c
+         character(c_char), intent(in), value :: c
          character(c_char), intent(inout) :: cp
-         logical(c_bool), value :: b
+         logical(c_bool), intent(in), value :: b
       end subroutine
    end interface
 

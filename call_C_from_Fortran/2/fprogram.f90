@@ -11,15 +11,15 @@ program fprogram
 
       subroutine add_vectors(length, vec1, vec2, result) bind(C)
          import :: c_int
-         integer(c_int), value :: length
-         integer(c_int), dimension(*), intent(in) :: vec1, vec2
+         integer(c_int), intent(in), value :: length
+         integer(c_int), intent(in) :: vec1(*), vec2(*)
          integer(c_int), intent(out) :: result(*)
       end subroutine
 
       type(c_ptr) function add_vectors_and_return(length, vec1, vec2) bind(C)
          import :: c_int, c_ptr
-         integer(c_int), value :: length
-         integer(c_int), dimension(*), intent(in) :: vec1, vec2
+         integer(c_int), intent(in), value :: length
+         integer(c_int), intent(in) :: vec1(*), vec2(*)
       end function
 
       subroutine free(ptr) bind(C)

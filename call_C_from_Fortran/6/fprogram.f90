@@ -7,9 +7,9 @@ program fprogram
       subroutine apply_function_to_vector(f, input_vector, output_vector, length) bind(C)
          import :: c_double, c_int, c_funptr
          type(c_funptr), value :: f
-         real(c_double), dimension(*), intent(in) :: input_vector
-         real(c_double), dimension(*), intent(out) :: output_vector
-         integer(c_int), value :: length
+         real(c_double), intent(in) :: input_vector(*)
+         real(c_double), intent(out) :: output_vector(*)
+         integer(c_int), intent(in), value :: length
       end subroutine
    end interface
 
