@@ -30,8 +30,8 @@ program fprogram
 
    ! Declare arrays and variables
    real(real64) :: point1(3), point2(3), distance
-   integer, parameter :: VEC_LENGTH = 5
-   integer, dimension(VEC_LENGTH) :: vec1, vec2, result_subroutine
+   integer, parameter :: vec_length = 5
+   integer, dimension(vec_length) :: vec1, vec2, result_subroutine
    integer, pointer :: result_function(:)
    type(c_ptr) :: c_result_ptr
 
@@ -47,15 +47,15 @@ program fprogram
    vec1 = [1, 2, 3, 4, 5]
    vec2 = [6, 7, 8, 9, 10]
 
-   call add_vectors(VEC_LENGTH, vec1, vec2, result_subroutine)
+   call add_vectors(vec_length, vec1, vec2, result_subroutine)
 
    print *, "Result Vector (add_vectors):"
    print *, result_subroutine
 
    ! Call the C function `add_vectors_and_return`
-   c_result_ptr = add_vectors_and_return(VEC_LENGTH, vec1, vec2)
+   c_result_ptr = add_vectors_and_return(vec_length, vec1, vec2)
 
-   call c_f_pointer(cptr=c_result_ptr, fptr=result_function, shape=[VEC_LENGTH])
+   call c_f_pointer(cptr=c_result_ptr, fptr=result_function, shape=[vec_length])
 
    print *, "Result Vector (add_vectors_and_return):"
    print *, result_function

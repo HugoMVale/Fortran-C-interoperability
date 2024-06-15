@@ -12,20 +12,20 @@ program fprogram
    end interface
 
    ! Declare arrays and variables
-   integer, parameter :: ROWS = 2
-   integer, parameter :: COLS = 3
-   integer :: matrix(ROWS, COLS), result(ROWS)
+   integer, parameter :: rows = 2, cols = 3
+   integer :: matrix(rows, cols), result(rows)
    integer :: i
 
    ! Initialize the matrix
    matrix(1, :) = [1, 2, 3]
    matrix(2, :) = [4, 5, 6]
 
-   ! Call the C funciton
-   call sum_cols(ROWS, COLS, transpose(matrix), result)
+   ! Call the C function
+   ! Note that the C function expects the matrix to be transposed
+   call sum_cols(rows, cols, transpose(matrix), result)
 
    ! Print the result
-   do i = 1, ROWS
+   do i = 1, size(result)
       print *, "Sum of row ", i, ": ", result(i)
    end do
 
