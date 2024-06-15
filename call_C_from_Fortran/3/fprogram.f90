@@ -5,6 +5,7 @@ program fprogram
    interface
       subroutine sum_cols(rows, cols, matrix, result) bind(C)
          import :: c_int
+         implicit none
          integer(c_int), intent(in), value :: rows, cols
          integer(c_int), intent(in) :: matrix(cols, rows) ! Transposed
          integer(c_int), intent(out) :: result(rows)

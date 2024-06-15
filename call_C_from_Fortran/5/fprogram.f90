@@ -18,6 +18,7 @@ program fprogram
    interface
       type(thing) function process_thing(t) bind(C)
          import :: thing
+         implicit none
          type(thing), intent(in) :: t
       end function
    end interface

@@ -6,6 +6,7 @@ program fprogram
    interface
       subroutine apply_function_to_vector(f, input_vector, output_vector, length) bind(C)
          import :: c_double, c_int, c_funptr
+         implicit none
          type(c_funptr), value :: f
          real(c_double), intent(in) :: input_vector(*)
          real(c_double), intent(out) :: output_vector(*)

@@ -6,6 +6,7 @@ program fprogram
    interface
       subroutine print_args(i, ip, f, fp, d, dp, cd, cdp, c, cp, b) bind(C)
          import :: c_int, c_float, c_double, c_char, c_bool, c_double_complex
+         implicit none
          integer(c_int), intent(in), value :: i
          integer(c_int), intent(inout) :: ip
          real(c_float), intent(in), value :: f
