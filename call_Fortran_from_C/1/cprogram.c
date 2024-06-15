@@ -15,8 +15,8 @@ int main()
     _Bool b = 1; // true in C
 
     // Call the Fortran function
-    int ret = print_args_c(&i, f, d, &cd, c, b);
-    printf("Return value: %d\n", ret);
+    int result = print_args_c(&i, f, d, &cd, c, b);
+    printf("Return value: %d\n", result);
 
     return 0;
 }

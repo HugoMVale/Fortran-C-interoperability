@@ -1,5 +1,5 @@
 program fprogram
-   use fmodule
+   use fmodule, only: print_args
    implicit none
 
    integer :: i
@@ -8,7 +8,7 @@ program fprogram
    double complex :: cd
    character :: c
    logical :: b
-   integer :: ret
+   integer :: result
 
    ! Initialize variables
    i = 42
@@ -19,7 +19,7 @@ program fprogram
    b = .true.
 
    ! Call the function and store the return value
-   ret = print_args(i, f, d, cd, c, b)
-   print *, "Return value: ", ret
+   result = print_args(i, f, d, cd, c, b)
+   print *, "Return value: ", result
 
 end program fprogram

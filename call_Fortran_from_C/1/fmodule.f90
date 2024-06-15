@@ -1,18 +1,17 @@
 module fmodule
-   use, intrinsic :: iso_fortran_env, only: real32, real64
    use, intrinsic :: iso_c_binding, only: c_int, c_float, c_double, c_double_complex, c_char, c_bool
    implicit none
    private
 
-   public :: print_args, print_args_c
+   public :: print_args
 
 contains
 
    integer function print_args(i, f, d, cd, c, b)
       integer, intent(in) :: i
-      real(real32), intent(in) :: f
-      real(real64), intent(in) :: d
-      complex(real64), intent(in) :: cd
+      real, intent(in) :: f
+      double precision, intent(in) :: d
+      double complex, intent(in) :: cd
       character, intent(in) :: c
       logical, intent(in) :: b
 
