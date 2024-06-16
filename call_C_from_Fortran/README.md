@@ -7,10 +7,11 @@ These examples illustrate how to call C functions from Fortran, covering various
 * On the C-side, no changes are required.
 * On the Fortran-side, write `interfaces` with `bind(C)` for the C-functions you wish to call.
     * The interface declaration must match the C-function prototype.
-    * Add `value` for arguments based by value (default in C).
+    * Add `value` for arguments passed by value (default in C).
     * Specify argument `intent()` as form of "documentation" (not sure if/when the compiler uses the info).
     * Type mapping for scalar variables is straightforward. Check any interoperation table.
     * Type mapping for arrays and pointer variables is less straightforward. The examples below are meant to help.
+    * The index order in multidimensional arrays is reversed, because Fortran uses column-major order and C uses row-major order.
 
 ## 1. Functions with _scalar_ variables called by _value_ or by _reference_
 
