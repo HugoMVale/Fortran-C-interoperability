@@ -45,6 +45,7 @@ contains
    end subroutine
 
    subroutine integrate_c(f, a, b, n, result) bind(C)
+      ! C-wrapper with reference to bound procedure `fx_c`
       procedure(fx_c) :: f
       real(c_float), intent(in) :: a, b
       integer(c_int), intent(in) :: n
