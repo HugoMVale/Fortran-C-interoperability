@@ -37,7 +37,7 @@ subroutine matvec_product(matrix, vector, result)
 end subroutine
 ```
 
-# 3. Functions with _callback_ arguments
+## 3. Functions with _callback_ arguments
 
 ```fortran
 subroutine integrate(f, a, b, n, result)
