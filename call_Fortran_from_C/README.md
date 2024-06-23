@@ -37,7 +37,16 @@ subroutine matvec_product(matrix, vector, result)
 end subroutine
 ```
 
-# 3. Functions with _callback_ arguments
+## 3. Functions with _character_ array arguments
+
+```fortran
+subroutine open_file(unit, filename)
+    integer, intent(in) :: unit
+    character(len=*) :: filename
+end subroutine
+```
+
+## 4. Functions with _callback_ arguments
 
 ```fortran
 subroutine integrate(f, a, b, n, result)

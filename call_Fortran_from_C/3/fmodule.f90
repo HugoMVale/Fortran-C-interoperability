@@ -1,57 +1,38 @@
 module fmodule
-   use, intrinsic :: iso_c_binding, only: c_funptr, c_ptr, c_float, c_int
    implicit none
    private
 
-   public :: integrate
-
-   abstract interface
-      real function fx(x)
-         implicit none
-         real, intent(in) :: x
-      end function
-   
-      real(c_float) function fx_c(x) bind(C)
-         import :: c_float
-         implicit none
-         real(c_float), intent(in) :: x
-      end function
-
-   end interface
+   public :: open_file
 
 contains
 
-   subroutine integrate(f, a, b, n, result)
-      procedure(fx) :: f
-      real, intent(in) :: a, b
-      integer, intent(in) :: n
-      real, intent(out) :: result
-
-      ! Local variables
-      real :: h, x, sum
-      integer :: i
-
-      ! Trapezoidal rule
-      h = (b - a)/n
-      sum = (f(a) + f(b))/2
-
-      do i = 1, n - 1
-         x = a + i*h
-         sum = sum + f(x)
-      end do
-
-      result = h*sum
+   subroutine open_file(unit, filename)
+      integer, intent(in) :: unit
+      character(len=*) :: filename
+      
+      print *, "filename=", filename
+      print *, "length  =", len(filename)
+      print *, "unit    =", unit
+      
+      open(unit=unit, file=filename)
+      close(unit)
 
    end subroutine
 
-   subroutine integrate_c(f, a, b, n, result) bind(C)
-      ! C-wrapper with reference to bound procedure `fx_c`
-      procedure(fx_c) :: f
-      real(c_float), intent(in) :: a, b
-      integer(c_int), intent(in) :: n
-      real(c_float), intent(out) :: result
+   subroutine open_file_c(unit, filename, length) bind(C)
+      use, intrinsic :: iso_c_binding, only: c_int, c_char
+      integer(c_int), intent(in), value :: unit
+      integer(c_int), intent(in), value :: length
+      character(kind=c_char), intent(in) :: filename(length)
+      
+      character(len=length) :: filename_
+      integer :: i
+    
+      do i = 1, length
+         filename_(i:i) = filename(i)
+      end do
 
-      call integrate(f, a, b, n, result)
+      call open_file(unit, filename_)
 
    end subroutine
 
