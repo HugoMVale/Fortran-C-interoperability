@@ -1,4 +1,5 @@
 module fmodule
+   use, intrinsic :: iso_c_binding, only: c_int, c_char
    implicit none
    private
 
@@ -20,7 +21,6 @@ contains
    end subroutine
 
    subroutine open_file_c(unit, filename, length) bind(C)
-      use, intrinsic :: iso_c_binding, only: c_int, c_char
       integer(c_int), intent(in), value :: unit
       integer(c_int), intent(in), value :: length
       character(kind=c_char), intent(in) :: filename(length)
