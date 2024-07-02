@@ -8,7 +8,7 @@ module fmodule
    interface
       integer(c_int) function strlen(string) bind(C)
          import :: c_int, c_ptr
-         type(c_ptr), intent(in) :: string ! value?
+         type(c_ptr), intent(in), value :: string
       end function
    end interface
 
@@ -31,22 +31,15 @@ contains
 
    subroutine open_file_c(unit, filename_cptr) bind(C)
       integer(c_int), intent(in), value :: unit
-      type(c_ptr) :: filename_cptr
+      type(c_ptr), intent(in), value :: filename_cptr
 
-      integer :: i
-      integer :: length
       character(kind=c_char), pointer :: filename_fptr(:)
       character(len=:), allocatable :: filename
+      integer :: length, i
       
       length = strlen(filename_cptr)
-      print *, "length=", length
-
       allocate(filename_fptr(length))
-      print *, "allocated(filename_fptr)=", associated(filename_fptr)
-
       call c_f_pointer(cptr=filename_cptr, fptr=filename_fptr, shape=[length])
-
-      print *, "filename_fptr=", associated(filename_fptr), filename_fptr
 
       ! Convert character array to character string _scalar_
       allocate(character(len=length) :: filename)
